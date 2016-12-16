@@ -7,8 +7,12 @@ import (
 	_ "github.com/lib/pq" // Dependency to connect postgres
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/purnaresa/training_project/talk_training"
+	"github.com/rikoboestari/training_project/talk_training"
 )
+
+func init() {
+	talk_training.Init()
+}
 
 func main() {
 	log.Printf("App starting ...")
@@ -19,4 +23,6 @@ func main() {
 
 	log.Printf("App listen on 3000")
 	log.Fatal(http.ListenAndServe(":3000", router))
+
+	talk_training.Clean()
 }
